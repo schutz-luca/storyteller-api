@@ -39,3 +39,5 @@ app.post('/create-story', async (req: Request, res: Response) => {
 app.listen(PORT, () => {
     console.log(`✨ Server running on port ${PORT}`);
 });
+
+export default app;
