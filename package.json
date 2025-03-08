@@ -2,11 +2,11 @@
   "name": "storyteller-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/functions/*.js",
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
-    "deploy": "npm run build && func azure functionapp publish str-api-app --typescript",
+    "deploy": "npm run build && func azure functionapp publish str-api-app",
     "start": "node dist/index.js"
   },
   "keywords": [],

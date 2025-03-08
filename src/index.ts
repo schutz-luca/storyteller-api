@@ -1,10 +1,11 @@
-import express, { Application, Request, Response } from 'express';
 import dotenv from 'dotenv';
+dotenv.config();
+
+import express, { Application, Request, Response } from 'express';
 import cors from "cors";
 import { useChatGpt } from './services/open-ia.service';
 import { createStory } from './services/story.service';
 
-dotenv.config();
 const PORT = process.env.PORT;
 
 const app: Application = express();
@@ -30,7 +31,8 @@ app.post('/create-story', async (req: Request, res: Response) => {
         const content = await createStory(req.body, 'ptbr');
         res.send({ content });
     }
-    catch (error) {
+    catch (error: any) {
+        res.status(500).send({ message: `Can't create story: ${error.message}` })
         console.error(error);
     }
 })

@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 import { ChatCompletionMessageParam } from 'openai/resources';
 
 const openia = new OpenAI({
-    apiKey: process.env.OPENIA_API_KEY
+    apiKey: process.env.OPENAI_API_KEY
 });
 
 
