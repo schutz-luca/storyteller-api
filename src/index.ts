@@ -28,7 +28,7 @@ app.post('/chat', async (req: Request, res: Response) => {
 app.post('/create-story', async (req: Request, res: Response) => {
     try {
         console.log(req.body);
-        const content = await createStory(req.body, 'ptbr');
+        const content = await createStory(req.body, req.query?.lang as string);
         res.send({ content });
     }
     catch (error: any) {
