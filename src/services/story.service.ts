@@ -2,6 +2,7 @@ import { useChatGpt } from "./open-ia.service";
 
 interface CreateStoryParams {
     goal: string;
+    textType: string;
     targetAudience: {
         profile: string;
         feelings: string;
@@ -26,7 +27,7 @@ export const createStory = (params: CreateStoryParams, language?: string) => {
             case 'pt':
             case 'pt-BR':
                 prompt = `
-                    Gere um resultado em texto no idioma português brasileiro com sintaxe de markdown, formatado, para cumprir com o objetivo de ${params.goal} que busque entender os sentimentos e sensações de ${params.targetAudience.profile} e façam-o sentir ${params.targetAudience.feelings}.
+                    Gere um resultado em texto no formato textual de ${params.textType} e no idioma português brasileiro com sintaxe de markdown, formatado, para cumprir com o objetivo de ${params.goal} que busque entender os sentimentos e sensações de ${params.targetAudience.profile} e façam-o sentir ${params.targetAudience.feelings}.
                     O enredo deve ser sobre ${params.story.about}${params.story.climax ? `, 
                         tendo o seguinte climax: ${params.story.climax}.` : ''}${params.story.moral ? `. Também deve ser apresentado a seguinte intenção como moral ou reflexão final: ${params.story.moral}` : '.'}
                         Para estrutura textual do artefato produzido, considere que o tom da construção soe ${params.structure.soundsLike}.
@@ -45,6 +46,8 @@ export const createStory = (params: CreateStoryParams, language?: string) => {
 
                     `;
         }
+
+        console.log(prompt);
 
         const result = useChatGpt([{
             role: 'user',
